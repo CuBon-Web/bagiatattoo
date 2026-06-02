@@ -71,9 +71,9 @@ export default {
     ...mapActions(["retrieveToken", "loadings"]),
     login() {
       this.loadings(true);
-      this.retrieveToken(this.objLogin)
+      this.retrieveToken(this.objLogin) 
         .then(() => {
-          this.$router.push({ name: "listProduct" });
+          this.$router.push({ name: "list_project_category" });
           window.location.reload();
         })
         .catch((error) => {
