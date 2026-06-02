@@ -18,7 +18,7 @@
         $jsonFlags = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES;
         $postTitle = $cleanText(languageName($blog_detail->title));
         $postDescription = $cleanText(
-            $blog_detail->meta_description ?: strip_tags(languageName($blog_detail->description)),
+            $blog_detail->meta_description ?: strip_tags(languageName($blog_detail->description))
         );
         $postContentText = trim($cleanText(strip_tags(languageName($blog_detail->content))));
         preg_match_all('/[\p{L}\p{N}]+/u', $postContentText, $wordMatches);
