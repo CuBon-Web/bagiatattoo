@@ -6,7 +6,7 @@ class RobotsController extends Controller
 {
     public function index()
     {
-        $base = rtrim(config('app.url'), '/');
+        $base = rtrim(url('/'), '/');
         $lines = [
             'User-agent: *',
             'Allow: /',
