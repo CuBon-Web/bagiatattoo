@@ -1,105 +1,97 @@
 /**
- * Google Translate — VI / EN switcher (reusable)
+ * Google Translate VI / EN — bản đơn giản, ổn định
  *
- * Requires:
- *   - #google_translate_element (hidden)
- *   - .gt-lang with buttons [data-gt-lang="vi|en"]
- *   - google-translate-lang.css
- *
- * Config via window.GT_LANG_CONFIG:
- *   { pageLanguage: 'vi', languages: ['vi', 'en'] }
+ * Cần: #google_translate_element, .gt-lang [data-gt-lang]
+ * Lưu lựa chọn: localStorage "gt_site_lang" + cookie googtrans (chỉ path=/)
  */
 (function (global) {
     'use strict';
 
-    var CONFIG = global.GT_LANG_CONFIG || {
-        pageLanguage: 'vi',
-        languages: ['vi', 'en'],
-    };
-
+    var PAGE_LANG = 'vi';
+    var STORAGE_KEY = 'gt_site_lang';
     var COOKIE_NAME = 'googtrans';
+    var COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
-    function getCookie(name) {
-        var match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '=([^;]*)'));
+    function readCookie() {
+        var match = document.cookie.match(/(?:^|;\s*)googtrans=([^;]*)/);
         return match ? decodeURIComponent(match[1]) : '';
     }
 
-  function getCookieDomains() {
-        var hostname = window.location.hostname;
+    function cookieValueForLang(lang) {
+        return lang === 'en' ? '/' + PAGE_LANG + '/en' : '/' + PAGE_LANG + '/' + PAGE_LANG;
+    }
+
+    function purgeLegacyGoogTransCookies() {
+        var expired = COOKIE_NAME + '=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        var host = global.location.hostname;
         var domains = [null];
 
-        if (!hostname || hostname === 'localhost' || hostname.indexOf('.') === -1) {
-            return domains;
+        if (host && host.indexOf('.') !== -1 && host !== 'localhost') {
+            var root = host.replace(/^www\./, '');
+            domains.push('.' + root, root);
+            if (host.indexOf('www.') === 0) {
+                domains.push(host);
+            }
         }
 
-        var rootDomain = hostname.replace(/^www\./, '');
-        domains.push('.' + rootDomain);
-        domains.push(rootDomain);
-
-        if (hostname.indexOf('www.') === 0) {
-            domains.push(hostname);
-        }
-
-        return domains.filter(function (domain, index, list) {
-            return list.indexOf(domain) === index;
+        domains.forEach(function (domain) {
+            document.cookie = domain ? expired + ';domain=' + domain : expired;
         });
     }
 
-    function setGoogTransCookie(lang) {
-        var pageLang = CONFIG.pageLanguage || 'vi';
-        var value = lang === pageLang ? '/' + pageLang + '/' + pageLang : '/' + pageLang + '/' + lang;
-        var encoded = encodeURIComponent(value);
-        var secure = window.location.protocol === 'https:' ? ';Secure' : '';
-        var sameSite = ';SameSite=Lax';
+    function writeGoogTransCookie(lang) {
+        var value = cookieValueForLang(lang);
+        var secure = global.location.protocol === 'https:' ? ';Secure' : '';
 
-        getCookieDomains().forEach(function (domain) {
-            var base = COOKIE_NAME + '=' + encoded + ';path=/' + sameSite + secure;
-            document.cookie = domain ? base + ';domain=' + domain : base;
-        });
+        purgeLegacyGoogTransCookies();
+        document.cookie =
+            COOKIE_NAME +
+            '=' +
+            encodeURIComponent(value) +
+            ';path=/;max-age=' +
+            COOKIE_MAX_AGE +
+            ';SameSite=Lax' +
+            secure;
     }
 
-    function clearGoogTransCookie() {
-        var expired = COOKIE_NAME + '=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT;SameSite=Lax';
-        var secure = window.location.protocol === 'https:' ? ';Secure' : '';
+    function getSavedLang() {
+        try {
+            var stored = global.localStorage.getItem(STORAGE_KEY);
+            if (stored === 'en' || stored === 'vi') {
+                return stored;
+            }
+        } catch (e) {}
 
-        getCookieDomains().forEach(function (domain) {
-            var base = expired + secure;
-            document.cookie = domain ? base + ';domain=' + domain : base;
-        });
-    }
-
-    function getActiveLang() {
-        var val = getCookie(COOKIE_NAME);
-        var pageLang = CONFIG.pageLanguage || 'vi';
-
-        if (!val) {
-            return pageLang;
-        }
-
-        var parts = val.split('/').filter(Boolean);
-        if (parts.length >= 2) {
-            return parts[1];
-        }
-
-        if (val.indexOf('/en') !== -1) {
+        var cookie = readCookie();
+        if (cookie.indexOf('/en') !== -1) {
             return 'en';
         }
 
-        return pageLang;
+        return PAGE_LANG;
     }
 
-    function updateButtons(root) {
-        var active = getActiveLang();
-        root.querySelectorAll('[data-gt-lang]').forEach(function (btn) {
+    function saveLang(lang) {
+        try {
+            global.localStorage.setItem(STORAGE_KEY, lang);
+        } catch (e) {}
+        writeGoogTransCookie(lang);
+    }
+
+    function updateButtons() {
+        var active = getSavedLang();
+        document.querySelectorAll('.gt-lang [data-gt-lang]').forEach(function (btn) {
             var lang = btn.getAttribute('data-gt-lang');
-            btn.classList.toggle('is-active', lang === active);
-            btn.setAttribute('aria-pressed', lang === active ? 'true' : 'false');
+            var isActive = lang === active;
+            btn.classList.toggle('is-active', isActive);
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
     }
 
     function switchLanguage(lang) {
-        var pageLang = CONFIG.pageLanguage || 'vi';
-        if (lang === getActiveLang()) {
+        if (lang !== 'vi' && lang !== 'en') {
+            return;
+        }
+        if (lang === getSavedLang()) {
             return;
         }
 
@@ -107,31 +99,31 @@
             el.classList.add('is-loading');
         });
 
-        // Google Translate needs an explicit /vi/vi cookie to restore Vietnamese on production.
-        clearGoogTransCookie();
-        setGoogTransCookie(lang);
-
-        window.location.reload();
+        saveLang(lang);
+        global.location.reload();
     }
 
-    function loadGoogleTranslateScript() {
+    function loadGoogleTranslate() {
         if (document.getElementById('google-translate-script')) {
             return;
         }
 
         global.googleTranslateElementInit = function () {
             if (!global.google || !global.google.translate) {
+                updateButtons();
                 return;
             }
+
             new global.google.translate.TranslateElement(
                 {
-                    pageLanguage: CONFIG.pageLanguage || 'vi',
-                    includedLanguages: (CONFIG.languages || ['vi', 'en']).join(','),
+                    pageLanguage: PAGE_LANG,
+                    includedLanguages: 'vi,en',
                     autoDisplay: false,
-                    multilanguagePage: true,
                 },
                 'google_translate_element'
             );
+
+            updateButtons();
         };
 
         var script = document.createElement('script');
@@ -141,32 +133,35 @@
         document.body.appendChild(script);
     }
 
-    function bindSwitcher(root) {
-        if (!root || root.getAttribute('data-gt-inited') === '1') {
-            return;
-        }
+    function bindSwitchers() {
+        document.querySelectorAll('.gt-lang').forEach(function (root) {
+            if (root.getAttribute('data-gt-inited') === '1') {
+                return;
+            }
 
-        updateButtons(root);
-
-        root.querySelectorAll('[data-gt-lang]').forEach(function (btn) {
-            btn.addEventListener('click', function (e) {
-                e.preventDefault();
-                switchLanguage(btn.getAttribute('data-gt-lang'));
+            root.querySelectorAll('[data-gt-lang]').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    switchLanguage(btn.getAttribute('data-gt-lang'));
+                });
             });
+
+            root.setAttribute('data-gt-inited', '1');
         });
 
-        root.setAttribute('data-gt-inited', '1');
+        updateButtons();
     }
 
     function init() {
-        loadGoogleTranslateScript();
-        document.querySelectorAll('.gt-lang').forEach(bindSwitcher);
+        bindSwitchers();
+        loadGoogleTranslate();
     }
 
     global.GTLang = {
         init: init,
-        getActiveLang: getActiveLang,
+        getSavedLang: getSavedLang,
         switchLanguage: switchLanguage,
+        writeGoogTransCookie: writeGoogTransCookie,
     };
 
     if (document.readyState === 'loading') {
@@ -174,4 +169,4 @@
     } else {
         init();
     }
-})(typeof window !== 'undefined' ? window : this);
+})(window);

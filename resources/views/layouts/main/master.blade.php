@@ -68,6 +68,35 @@
 </head>
 
 <body class="theme-style--light">
+   {{-- Đồng bộ cookie trước khi Google Translate tải (VI/EN ổn định trên server) --}}
+   <script>
+   (function () {
+       var KEY = 'gt_site_lang';
+       var PAGE = 'vi';
+       var lang = 'vi';
+       var expired = 'googtrans=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+       var host = location.hostname;
+       var domains = [null];
+
+       try {
+           var stored = localStorage.getItem(KEY);
+           if (stored === 'en' || stored === 'vi') lang = stored;
+       } catch (e) {}
+
+       if (host && host.indexOf('.') !== -1 && host !== 'localhost') {
+           var root = host.replace(/^www\./, '');
+           domains.push('.' + root, root);
+       }
+
+       domains.forEach(function (d) {
+           document.cookie = d ? expired + ';domain=' + d : expired;
+       });
+
+       var val = lang === 'en' ? '/' + PAGE + '/en' : '/' + PAGE + '/' + PAGE;
+       var secure = location.protocol === 'https:' ? ';Secure' : '';
+       document.cookie = 'googtrans=' + encodeURIComponent(val) + ';path=/;max-age=31536000;SameSite=Lax' + secure;
+   })();
+   </script>
    <div id="google_translate_element" aria-hidden="true"></div>
    <!-- Preloader -->
    <div id="preloader">
@@ -131,7 +160,7 @@
     <!-- Theme Custom JS -->
     <script src="/frontend/js/theme.js"></script>
     <script src="/frontend/js/call-button.js"></script>
-    <script src="/frontend/js/google-translate-lang.js"></script>
+    <script src="/frontend/js/google-translate-lang.js?v=2"></script>
    @yield('js')
 </body>
 
