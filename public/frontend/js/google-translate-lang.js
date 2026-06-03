@@ -24,40 +24,68 @@
         return match ? decodeURIComponent(match[1]) : '';
     }
 
+  function getCookieDomains() {
+        var hostname = window.location.hostname;
+        var domains = [null];
+
+        if (!hostname || hostname === 'localhost' || hostname.indexOf('.') === -1) {
+            return domains;
+        }
+
+        var rootDomain = hostname.replace(/^www\./, '');
+        domains.push('.' + rootDomain);
+        domains.push(rootDomain);
+
+        if (hostname.indexOf('www.') === 0) {
+            domains.push(hostname);
+        }
+
+        return domains.filter(function (domain, index, list) {
+            return list.indexOf(domain) === index;
+        });
+    }
+
     function setGoogTransCookie(lang) {
         var pageLang = CONFIG.pageLanguage || 'vi';
         var value = lang === pageLang ? '/' + pageLang + '/' + pageLang : '/' + pageLang + '/' + lang;
-        var hostname = window.location.hostname;
-        var cookie = COOKIE_NAME + '=' + encodeURIComponent(value) + ';path=/';
+        var encoded = encodeURIComponent(value);
+        var secure = window.location.protocol === 'https:' ? ';Secure' : '';
+        var sameSite = ';SameSite=Lax';
 
-        document.cookie = cookie;
-        if (hostname && hostname.indexOf('.') !== -1) {
-            var rootDomain = hostname.replace(/^www\./, '');
-            document.cookie = cookie + ';domain=.' + rootDomain;
-        }
-        if (hostname.indexOf('www.') === 0) {
-            document.cookie = cookie + ';domain=' + hostname.replace(/^www\./, '');
-        }
+        getCookieDomains().forEach(function (domain) {
+            var base = COOKIE_NAME + '=' + encoded + ';path=/' + sameSite + secure;
+            document.cookie = domain ? base + ';domain=' + domain : base;
+        });
     }
 
     function clearGoogTransCookie() {
-        var hostname = window.location.hostname;
-        var expired = COOKIE_NAME + '=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT';
-        document.cookie = expired;
-        if (hostname && hostname.indexOf('.') !== -1) {
-            document.cookie = expired + ';domain=.' + hostname.replace(/^www\./, '');
-        }
+        var expired = COOKIE_NAME + '=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT;SameSite=Lax';
+        var secure = window.location.protocol === 'https:' ? ';Secure' : '';
+
+        getCookieDomains().forEach(function (domain) {
+            var base = expired + secure;
+            document.cookie = domain ? base + ';domain=' + domain : base;
+        });
     }
 
     function getActiveLang() {
         var val = getCookie(COOKIE_NAME);
+        var pageLang = CONFIG.pageLanguage || 'vi';
+
         if (!val) {
-            return CONFIG.pageLanguage || 'vi';
+            return pageLang;
         }
+
+        var parts = val.split('/').filter(Boolean);
+        if (parts.length >= 2) {
+            return parts[1];
+        }
+
         if (val.indexOf('/en') !== -1) {
             return 'en';
         }
-        return CONFIG.pageLanguage || 'vi';
+
+        return pageLang;
     }
 
     function updateButtons(root) {
@@ -79,11 +107,9 @@
             el.classList.add('is-loading');
         });
 
-        if (lang === pageLang) {
-            clearGoogTransCookie();
-        } else {
-            setGoogTransCookie(lang);
-        }
+        // Google Translate needs an explicit /vi/vi cookie to restore Vietnamese on production.
+        clearGoogTransCookie();
+        setGoogTransCookie(lang);
 
         window.location.reload();
     }
