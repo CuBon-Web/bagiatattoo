@@ -1,8 +1,6 @@
 /**
- * Google Translate VI / EN — bản đơn giản, ổn định
- *
- * Cần: #google_translate_element, .gt-lang [data-gt-lang]
- * Lưu lựa chọn: localStorage "gt_site_lang" + cookie googtrans (chỉ path=/)
+ * VI / EN — chỉ bật Google Translate khi chọn EN.
+ * VI = HTML gốc từ server (không qua widget, tránh kẹt bản dịch).
  */
 (function (global) {
     'use strict';
@@ -10,18 +8,13 @@
     var PAGE_LANG = 'vi';
     var STORAGE_KEY = 'gt_site_lang';
     var COOKIE_NAME = 'googtrans';
-    var COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
     function readCookie() {
         var match = document.cookie.match(/(?:^|;\s*)googtrans=([^;]*)/);
         return match ? decodeURIComponent(match[1]) : '';
     }
 
-    function cookieValueForLang(lang) {
-        return lang === 'en' ? '/' + PAGE_LANG + '/en' : '/' + PAGE_LANG + '/' + PAGE_LANG;
-    }
-
-    function purgeLegacyGoogTransCookies() {
+    function purgeGoogTransCookies() {
         var expired = COOKIE_NAME + '=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT';
         var host = global.location.hostname;
         var domains = [null];
@@ -39,19 +32,33 @@
         });
     }
 
-    function writeGoogTransCookie(lang) {
-        var value = cookieValueForLang(lang);
+    function setEnglishCookie() {
         var secure = global.location.protocol === 'https:' ? ';Secure' : '';
-
-        purgeLegacyGoogTransCookies();
+        purgeGoogTransCookies();
         document.cookie =
             COOKIE_NAME +
             '=' +
-            encodeURIComponent(value) +
-            ';path=/;max-age=' +
-            COOKIE_MAX_AGE +
-            ';SameSite=Lax' +
+            encodeURIComponent('/' + PAGE_LANG + '/en') +
+            ';path=/;max-age=31536000;SameSite=Lax' +
             secure;
+    }
+
+    function stripTranslateArtifacts() {
+        var html = document.documentElement;
+        if (html) {
+            html.classList.remove('translated-ltr', 'translated-rtl');
+            html.removeAttribute('lang');
+        }
+        document.querySelectorAll('font[style*="vertical-align"]').forEach(function (node) {
+            var parent = node.parentNode;
+            if (!parent) {
+                return;
+            }
+            while (node.firstChild) {
+                parent.insertBefore(node.firstChild, node);
+            }
+            parent.removeChild(node);
+        });
     }
 
     function getSavedLang() {
@@ -62,19 +69,11 @@
             }
         } catch (e) {}
 
-        var cookie = readCookie();
-        if (cookie.indexOf('/en') !== -1) {
-            return 'en';
-        }
-
-        return PAGE_LANG;
+        return readCookie().indexOf('/en') !== -1 ? 'en' : PAGE_LANG;
     }
 
-    function saveLang(lang) {
-        try {
-            global.localStorage.setItem(STORAGE_KEY, lang);
-        } catch (e) {}
-        writeGoogTransCookie(lang);
+    function shouldUseTranslate() {
+        return getSavedLang() === 'en';
     }
 
     function updateButtons() {
@@ -99,14 +98,30 @@
             el.classList.add('is-loading');
         });
 
-        saveLang(lang);
+        try {
+            global.localStorage.setItem(STORAGE_KEY, lang);
+        } catch (e) {}
+
+        if (lang === 'en') {
+            setEnglishCookie();
+        } else {
+            purgeGoogTransCookies();
+        }
+
         global.location.reload();
     }
 
     function loadGoogleTranslate() {
+        if (!shouldUseTranslate()) {
+            stripTranslateArtifacts();
+            return;
+        }
+
         if (document.getElementById('google-translate-script')) {
             return;
         }
+
+        setEnglishCookie();
 
         global.googleTranslateElementInit = function () {
             if (!global.google || !global.google.translate) {
@@ -124,6 +139,14 @@
             );
 
             updateButtons();
+
+            global.setTimeout(function () {
+                var combo = document.querySelector('select.goog-te-combo');
+                if (combo && combo.value !== 'en') {
+                    combo.value = 'en';
+                    combo.dispatchEvent(new Event('change'));
+                }
+            }, 300);
         };
 
         var script = document.createElement('script');
@@ -153,6 +176,11 @@
     }
 
     function init() {
+        if (!shouldUseTranslate()) {
+            purgeGoogTransCookies();
+            stripTranslateArtifacts();
+        }
+
         bindSwitchers();
         loadGoogleTranslate();
     }
@@ -161,7 +189,6 @@
         init: init,
         getSavedLang: getSavedLang,
         switchLanguage: switchLanguage,
-        writeGoogTransCookie: writeGoogTransCookie,
     };
 
     if (document.readyState === 'loading') {

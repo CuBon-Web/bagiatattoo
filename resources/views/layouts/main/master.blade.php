@@ -68,11 +68,10 @@
 </head>
 
 <body class="theme-style--light">
-   {{-- Đồng bộ cookie trước khi Google Translate tải (VI/EN ổn định trên server) --}}
+   {{-- VI: xóa cookie GT (HTML gốc). EN: đặt cookie trước khi widget tải. --}}
    <script>
    (function () {
        var KEY = 'gt_site_lang';
-       var PAGE = 'vi';
        var lang = 'vi';
        var expired = 'googtrans=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT';
        var host = location.hostname;
@@ -92,9 +91,10 @@
            document.cookie = d ? expired + ';domain=' + d : expired;
        });
 
-       var val = lang === 'en' ? '/' + PAGE + '/en' : '/' + PAGE + '/' + PAGE;
-       var secure = location.protocol === 'https:' ? ';Secure' : '';
-       document.cookie = 'googtrans=' + encodeURIComponent(val) + ';path=/;max-age=31536000;SameSite=Lax' + secure;
+       if (lang === 'en') {
+           var secure = location.protocol === 'https:' ? ';Secure' : '';
+           document.cookie = 'googtrans=%2Fvi%2Fen;path=/;max-age=31536000;SameSite=Lax' + secure;
+       }
    })();
    </script>
    <div id="google_translate_element" aria-hidden="true"></div>
@@ -160,7 +160,7 @@
     <!-- Theme Custom JS -->
     <script src="/frontend/js/theme.js"></script>
     <script src="/frontend/js/call-button.js"></script>
-    <script src="/frontend/js/google-translate-lang.js?v=2"></script>
+    <script src="/frontend/js/google-translate-lang.js?v=3"></script>
    @yield('js')
 </body>
 
