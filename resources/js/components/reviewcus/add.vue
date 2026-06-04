@@ -34,7 +34,7 @@
                 </div>
               </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>Chức vụ</label>
               <vs-input
                 type="text"
@@ -63,7 +63,7 @@
                   />
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="form-group">
               <label>Nội dung</label>
               <vs-textarea v-model="objData.content[0].content" />
@@ -214,8 +214,8 @@ export default {
         this.errors.push("Tên không được để trống");
       if (this.objData.content[0].content == "")
         this.errors.push("Nội dung không được để trống");
-      if (this.objData.position[0].content == "")
-        this.errors.push("Chức vụ không được để trống");
+      // if (this.objData.position[0].content == "")
+      //   this.errors.push("Chức vụ không được để trống");
       if (this.objData.avatar == "") this.errors.push("Vui lòng chọn ảnh");
       if (this.errors.length > 0) {
         this.errors.forEach((value, key) => {

@@ -50,7 +50,7 @@
       <div class="container">
          <div class="footer-bottom-inner">
             <div class="copyright">
-               <p>Copyright © {{date('Y')}} <a href="{{route('home')}}">Bà Già Tattoo</a>, Designed by Tuấn Anh Developer
+               <p>Copyright © {{date('Y')}} <a href="{{route('home')}}">Bagia Tattoo</a>, Designed by Tuấn Anh Developer
                </p>
             </div>
             <div class="social-box style-oval">

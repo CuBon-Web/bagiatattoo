@@ -46,12 +46,83 @@
     </header>
 
     @if($reviewContent)
-    <p class="google-review-card__text">{{ $reviewContent }}</p>
+    <div class="google-review-card__text-wrap" data-review-text-wrap>
+        <p class="google-review-card__text is-clamped">{{ $reviewContent }}</p>
+        <button type="button" class="google-review-card__toggle" data-review-toggle hidden
+            aria-expanded="false">
+            <span class="google-review-card__toggle-more">Xem thêm</span>
+            <span class="google-review-card__toggle-less" hidden>Thu gọn</span>
+        </button>
+    </div>
     @endif
 
-    @if($reviewPosition)
+    {{-- @if($reviewPosition)
     <footer class="google-review-card__meta">
         <i class="bi bi-geo-alt"></i> {{ $reviewPosition }}
     </footer>
-    @endif
+    @endif --}}
 </article>
+
+@once
+<script>
+(function () {
+    function updateToggleLabels(btn, expanded) {
+        var more = btn.querySelector('.google-review-card__toggle-more');
+        var less = btn.querySelector('.google-review-card__toggle-less');
+        if (more) more.hidden = expanded;
+        if (less) less.hidden = !expanded;
+    }
+
+    function checkWrap(wrap) {
+        var text = wrap.querySelector('.google-review-card__text');
+        var btn = wrap.querySelector('[data-review-toggle]');
+        if (!text || !btn) return;
+
+        text.classList.remove('is-expanded');
+        text.classList.add('is-clamped');
+        btn.setAttribute('aria-expanded', 'false');
+        updateToggleLabels(btn, false);
+
+        requestAnimationFrame(function () {
+            var overflow = text.scrollHeight > text.clientHeight + 2;
+            btn.hidden = !overflow;
+            if (!overflow) {
+                text.classList.remove('is-clamped');
+            }
+        });
+    }
+
+    function initReviewTextToggles(root) {
+        (root || document).querySelectorAll('[data-review-text-wrap]').forEach(function (wrap) {
+            if (wrap.getAttribute('data-review-inited') === '1') return;
+            wrap.setAttribute('data-review-inited', '1');
+
+            var text = wrap.querySelector('.google-review-card__text');
+            var btn = wrap.querySelector('[data-review-toggle]');
+            if (!text || !btn) return;
+
+            checkWrap(wrap);
+
+            btn.addEventListener('click', function () {
+                var expanded = text.classList.toggle('is-expanded');
+                text.classList.toggle('is-clamped', !expanded);
+                btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                updateToggleLabels(btn, expanded);
+            });
+        });
+    }
+
+    function boot() {
+        initReviewTextToggles(document);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+    } else {
+        boot();
+    }
+
+    window.initReviewTextToggles = initReviewTextToggles;
+})();
+</script>
+@endonce

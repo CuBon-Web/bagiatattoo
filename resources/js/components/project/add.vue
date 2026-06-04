@@ -137,7 +137,7 @@ export default {
         status: 1,
         show_home: 0,
         images: [],
-        location:"Bà Già Tattoo",
+        location:"Bagia Tattoo",
         scale:"",
         operate:""
       },

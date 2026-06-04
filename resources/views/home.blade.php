@@ -309,6 +309,110 @@
             padding-bottom: 0px;
         }
 
+        /* Sidebar — thẻ Google Business (giống Google Maps) */
+        .google-business-card {
+            height: 100%;
+        }
+
+        .google-business-card__inner {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 22px 20px;
+        }
+
+        .google-business-card__top {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .google-business-card__logo {
+            flex-shrink: 0;
+            width: 72px;
+            height: 72px;
+            padding: 8px;
+            border: 1px solid #e8eaed;
+            border-radius: 4px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .google-business-card__logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .google-business-card__info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .google-business-card__title {
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.35;
+            color: #202124;
+            margin: 0 0 10px;
+            font-family: var(--font-family-base, Arial, sans-serif);
+            font-style: normal;
+        }
+
+        .google-business-card__stars {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            margin-bottom: 6px;
+            color: #f4b400;
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        .google-business-card__count {
+            font-size: 14px;
+            font-weight: 400;
+            color: #202124;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .google-business-card__btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 11px 20px;
+            border: 1px solid #dadce0;
+            border-radius: 24px;
+            background: #fff;
+            color: #202124;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .google-business-card__btn:hover {
+            background: #f8f9fa;
+            border-color: #bdc1c6;
+            color: #202124;
+            box-shadow: 0 1px 2px rgba(60, 64, 67, 0.15);
+        }
+
+        @media (max-width: 991px) {
+            .google-business-card {
+                margin-bottom: 24px;
+            }
+
+            .google-business-card__inner {
+                max-width: 360px;
+                margin: 0 auto;
+            }
+        }
+
         .google-review-card {
             height: 100%;
             padding: 24px 26px 22px;
@@ -380,12 +484,50 @@
             opacity: 0.9;
         }
 
+        .google-review-card__text-wrap {
+            margin-bottom: 12px;
+        }
+
         .google-review-card__text {
             font-size: 17px;
-    font-weight: 400;
-    /* line-height: 1.75; */
-    color: #000000;
-    margin: 0 0 12px;
+            font-weight: 400;
+            line-height: 1.65;
+            color: #000000;
+            margin: 0;
+        }
+
+        .google-review-card__text.is-clamped {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+            overflow: hidden;
+        }
+
+        .google-review-card__text.is-expanded {
+            display: block;
+            overflow: visible;
+        }
+
+        .google-review-card__toggle {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 0;
+            border: none;
+            background: none;
+            color: #b90808;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .google-review-card__toggle:hover {
+            color: #8a0606;
+        }
+
+        .google-review-card__toggle[hidden] {
+            display: none !important;
         }
 
         .google-review-card__meta {
@@ -785,7 +927,7 @@
 
                                                                 @if (trim($item->link ?? ''))
                                                                     <div class="wptb-item--button">
-                                                                        <a class="btn btn-two white"
+                                                                        <a class="btn btn-two white" target="_blank"
                                                                             href="{{ $item->link }}">
                                                                             <span class="btn-wrap">
                                                                                 <span class="text-first">Xem thêm</span>
@@ -795,7 +937,7 @@
                                                                                 </span>
                                                                             </span>
                                                                         </a>
-                                                                        <a class="btn btn-two creative" href="#">
+                                                                        <a class="btn btn-two creative" target="_blank" href="https://www.instagram.com/bagiatattoo/">
                                                                             <span class="btn-wrap">
                                                                                 <span class="text-first">Đặt lịch
                                                                                     ngay</span>
@@ -1295,8 +1437,8 @@
                         </svg>
                         <span>Đánh giá trên Google Maps</span>
                     </div>
-                    <h2 class="google-reviews__title">Khách hàng chia sẻ</h2>
-                    <p class="google-reviews__subtitle">Những trải nghiệm thật từ khách hàng đã tin tưởng và đồng hành cùng studio.</p>
+                    <h2 class="google-reviews__title">Cảm Nhận Từ Khách Hàng</h2>
+                    <p class="google-reviews__subtitle">Những chia sẻ chân thực từ khách hàng đã đồng hành cùng Bagia Tattoo.</p>
                     <div class="google-reviews__summary">
                         <span class="google-reviews__summary-score">5.0</span>
                         <span class="google-reviews__summary-stars" aria-hidden="true">
@@ -1307,7 +1449,42 @@
                 </div>
 
                 <div class="row ">
-                    <div class="col-lg-12 col-md-10">
+                    <div class="col-lg-3 col-md-4" style="margin: auto;">
+                        
+                        <aside class="box-content-feedback google-business-card" aria-label="Thông tin đánh giá Google">
+                            <div class="google-business-card__inner">
+                                <div class="google-business-card__top">
+                                    <div class="google-business-card__logo">
+                                        @if(!empty($setting->logo))
+                                            <img src="{{ url($setting->logo) }}" alt="{{ $setting->logo }}">
+                                        @endif
+                                    </div>
+                                    <div class="google-business-card__info">
+                                        <h3 class="google-business-card__title">
+                                            <span class="d-block fw-normal" style="font-size: 18px; color: #000000; margin-top: 4px;">{{ $setting->company }}</span>
+                                        </h3>
+                                        <div class="google-business-card__stars" aria-label="5 trên 5 sao">
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                            <i class="bi bi-star-fill"></i>
+                                        </div>
+                                        <p class="google-business-card__count">
+                                            130+ đánh giá trên Google
+                                        </p>
+                                    </div>
+                                </div>
+                                <a class="google-business-card__btn"
+                                    href="https://admin.trustindex.io/api/googleWriteReview?place-id=ChIJj9gz0OOrNTERRIo5wmaGDLo"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    Viết đánh giá
+                                </a>
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="col-lg-9 col-md-8">
                         <div class="swiper-container swiper-testimonial position-relative">
                             <div class="swiper-wrapper">
                                 @foreach($ReviewCus as $review)
@@ -1324,6 +1501,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="wptb-item--button text-center mt-2">
+                    <a class="btn btn-two text-uppercase" target="_blank" href="https://www.google.com/maps/place/Ti%E1%BB%87m+x%C4%83m+Bagia+Tattoo/@21.0259198,105.8265987,1052m/data=!3m1!1e3!4m8!3m7!1s0x3135abe3d033d88f:0xba0c8666c2398a44!8m2!3d21.0259198!4d105.8265987!9m1!1b1!16s%2Fg%2F11jh6qsml8?entry=ttu&g_ep=EgoyMDI2MDYwMS4wIKXMDSoASAFQAw%3D%3D">
+                          <span class="btn-wrap">
+                             <span class="text-first">Xem thêm đánh giá</span>
+                             <span class="text-second"> <i class="bi bi-arrow-up-right"></i> <i class="bi bi-arrow-up-right"></i> </span>
+                          </span>
+                    </a>
+                 </div>
             </div>
         </section>
         @endif

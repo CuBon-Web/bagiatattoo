@@ -28,14 +28,14 @@
                             
                          </ul>
                       </li>
-                      <li class="menu-item menu-item-has-children"><a href="#">Dịch vụ</a>
+                      {{-- <li class="menu-item menu-item-has-children"><a href="#">Dịch vụ</a>
                         <ul class="sub-menu" data-lenis-prevent>
                            @foreach ($servicehome as $item)
                            <li class="menu-item"><a href="{{route('serviceList', $item->slug)}}">{{$item->name}}</a></li>
                            @endforeach
                            
                         </ul>
-                     </li>
+                     </li> --}}
                      @foreach ($blogCate as $item)
                      <li class="menu-item {{count($item->typeCate) > 0 ? 'menu-item-has-children' : ''}}"><a href="{{route('listCateBlog', $item->slug)}}">{{languageName($item->name)}}</a>
                         @if (count($item->typeCate) > 0)

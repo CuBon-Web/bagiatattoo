@@ -49,7 +49,12 @@
                 -webkit-filter 0.45s ease,
                 filter 0.45s ease;
         }
-
+        @media screen and (max-width: 768px) {
+            .project-detail-gallery .grid-item > a img {
+                -webkit-filter: grayscale(0%);
+                filter: grayscale(0%);
+            }
+        }
         .project-detail-gallery .grid-item > a i {
             position: absolute;
             right: 14px;
