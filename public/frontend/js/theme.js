@@ -774,7 +774,19 @@ Description: Kimono - Photography Agency
                 768: {
                   slidesPerView: 1,
                 },
-            }
+            },
+            on: {
+                init: function () {
+                    if (window.initReviewTextToggles) {
+                        window.initReviewTextToggles(document);
+                    }
+                },
+                slideChangeTransitionEnd: function () {
+                    if (window.initReviewTextToggles) {
+                        window.initReviewTextToggles(document);
+                    }
+                },
+            },
         });
 
         // Testimonial Two

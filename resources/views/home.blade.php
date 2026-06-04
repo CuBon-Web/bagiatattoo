@@ -500,7 +500,9 @@
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 4;
+            line-clamp: 4;
             overflow: hidden;
+            word-break: break-word;
         }
 
         .google-review-card__text.is-expanded {
@@ -856,6 +858,7 @@
     </style>
 @endsection
 @section('js')
+    <script src="/frontend/js/google-review-card.js?v=1"></script>
 @endsection
 @section('content')
     <main class="wrapper">
