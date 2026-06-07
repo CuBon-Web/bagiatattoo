@@ -25,7 +25,7 @@
                      </div>
 
                      <h6 class="widget-title">{{$setting->webname}}</h6>
-                     <h6> <i class="bi bi-clock"></i>{{$setting->linkpopup}}</h6>
+                     <h6 class="widget-title"> <i class="bi bi-clock"></i>{{$setting->linkpopup}}</h6>
                   </div>
                </div>
 
