@@ -985,7 +985,7 @@
             <div class="container">
                 <div class="wptb-heading">
                     <div class="wptb-item--inner text-center">
-                        <h6 class="wptb-item--subtitle"><span>01 //</span> ABOUT US</h6>
+                        <h6 class="wptb-item--subtitle"><span>01 //</span> GIỚI THIỆU</h6>
                         <h1 class="wptb-item--title"><span>{{$setting->company}}</span></h1>
                     </div>
                 </div>
