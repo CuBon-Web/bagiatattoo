@@ -60,7 +60,7 @@ Liên hệ với chúng tôi
 								<div class="wptb-item--holder">
 									<h3 class="wptb-item--title">Địa chỉ</h3>
 									<p class="wptb-item--description">{{$setting->address1}}</p>
-									<a href="#" class="wptb-item--link">View Map</a>
+									<a href="https://g.page/bagiatattoo" class="wptb-item--link">View Map</a>
 								</div>
 							</div>
 						</div> 
