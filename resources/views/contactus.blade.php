@@ -79,8 +79,8 @@ Liên hệ với chúng tôi
                     <div class="col-lg-5">
                         <div class="wptb-heading">
                             <div class="wptb-item--inner">
-                                <h6 class="wptb-item--subtitle"> <span>01 //</span> Contact Us</h6>
-                                <h1 class="wptb-item--title"> <span>Liên hệ với chúng tôi</span></h1>
+                                <h6 class="wptb-item--subtitle"> <span>01 //</span> Liên Hệ</h6>
+                                {{-- <h1 class="wptb-item--title"> <span>Liên hệ với chúng tôi</span></h1> --}}
                             </div>
                         </div>
                         <div class="widget">

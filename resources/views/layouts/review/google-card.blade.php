@@ -28,6 +28,7 @@
             </div>
             <div class="google-review-card__identity">
                 <h4 class="google-review-card__name">{{ $reviewName ?: 'Khách hàng' }}</h4>
+                <i style="font-size: 12px;">{{languageName($reviewPosition)}}</i>
                 <div class="google-review-card__stars" aria-label="5 sao">
                     @for ($s = 0; $s < 5; $s++)
                     <i class="bi bi-star-fill"></i>

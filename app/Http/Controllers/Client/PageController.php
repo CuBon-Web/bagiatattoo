@@ -321,7 +321,7 @@ class PageController extends Controller
     {
         $data['list'] = Project::with(['cateService'])->where('status',1)->paginate(12);
         $data['title'] = 'Tất cả dự án';
-        $data['description'] = 'Tất cả dự án';
+        $data['description'] = 'Khám phá hành trình nghệ thuật của Bagia Tattoo';
         $data['image'] = '';
         return view('projectCategory', $data);
     }

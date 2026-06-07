@@ -13,51 +13,17 @@
                   class="w-100"
                   v-model="objData.name[0].content"
                 />
-                <el-button size="small" @click="showSettingLangExist('name')">Đa ngôn ngữ</el-button>
-                <div class="dropLanguage" v-if="showLang.title == true">
-                  <div class="form-group" v-for="item,index in lang" :key="index">
-                    <label v-if="index != 0">{{item.name}}</label>
-                    <input
-                      v-if="index != 0"
-                      type="text"
-                      size="default"
-                      placeholder="Tên sản phẩm"
-                      class="w-100 inputlang"
-                      v-model="objData.name[index].content"
-                    />
-                  </div>
-                </div>
               </div>
-              <!-- <div class="form-group">
-              <label>Chức vụ</label>
+              <div class="form-group">
+              <label>Thời gian review</label>
               <vs-input
                 type="text"
                 size="default"
-                placeholder="Chức vụ/Công việc"
+                placeholder="Thời gian review"
                 class="w-100"
                 v-model="objData.position[0].content"
               />
-              <el-button size="small" @click="showSettingLangExist('position')"
-                >Đa ngôn ngữ</el-button
-              >
-              <div class="dropLanguage" v-if="showLang.title == true">
-                <div
-                  class="form-group"
-                  v-for="(item, index) in lang"
-                  :key="index"
-                >
-                  <label v-if="index != 0">{{ item.name }}</label>
-                  <input
-                    v-if="index != 0"
-                    type="text"
-                    size="default"
-                    placeholder="Chức vụ/Công việc"
-                    class="w-100 inputlang"
-                    v-model="objData.position[index].content"
-                  />
-                </div> 
-              </div>
-            </div> -->
+            </div>
               <div class="form-group">
                 <label>Nội dung</label>
                 <vs-textarea v-model="objData.content[0].content" />

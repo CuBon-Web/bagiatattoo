@@ -468,7 +468,7 @@
             font-size: 15px;
             font-weight: 600;
             color: #202124;
-            margin: 0 0 4px;
+            margin: 0;
             line-height: 1.3;
         }
 
@@ -986,7 +986,7 @@
                 <div class="wptb-heading">
                     <div class="wptb-item--inner text-center">
                         <h6 class="wptb-item--subtitle"><span>01 //</span> GIỚI THIỆU</h6>
-                        <h1 class="wptb-item--title"><span>{{$setting->company}}</span></h1>
+                        <h1 class="wptb-item--title"><span>Câu chuyện Bagia Tattoo</span></h1>
                     </div>
                 </div>
 
@@ -1029,8 +1029,8 @@
                                     <div class="wptb-item--inner">
                                         <div class="wptb-item--holder align-items-center">
                                             <div class="wptb-item--value"><span class="odometer"
-                                                    data-count="3000"></span><span class="suffix">+</span></div>
-                                            <div class="wptb-item--text">Khách hàng</div>
+                                                    data-count="8000"></span><span class="suffix">+</span></div>
+                                            <div class="wptb-item--text">KHÁCH HÀNG ĐÃ TIN TƯỞNG</div>
                                         </div>
                                     </div>
                                 </div>
@@ -1041,8 +1041,8 @@
                                     <div class="wptb-item--inner">
                                         <div class="wptb-item--holder align-items-center">
                                             <div class="wptb-item--value flex-shrink-0"><span class="odometer"
-                                                    data-count="5000"></span><span class="suffix">+</span></div>
-                                            <div class="wptb-item--text">Hình xăm thực hiện</div>
+                                                    data-count="10000"></span><span class="suffix">+</span></div>
+                                            <div class="wptb-item--text">TÁC PHẨM ĐÃ THỰC HIỆN</div>
                                         </div>
                                     </div>
                                 </div>
@@ -1052,8 +1052,8 @@
                                     <div class="wptb-item--inner">
                                         <div class="wptb-item--holder align-items-center">
                                             <div class="wptb-item--value flex-shrink-0"><span class="odometer"
-                                                    data-count="98"></span><span class="suffix">%</span></div>
-                                            <div class="wptb-item--text">Khách hàng hài lòng</div>
+                                                    data-count="10"></span><span class="suffix">năm</span></div>
+                                            <div class="wptb-item--text">KINH NGHIỆM XĂM NGHỆ THUẬT</div>
                                         </div>
                                     </div>
                                 </div>
@@ -1102,7 +1102,7 @@
                <div class="wptb-heading">
                   <div class="wptb-item--inner text-center">
                         <h6 class="wptb-item--subtitle"><span>02//</span> Tác Phẩm Nổi Bật</h6>
-                        <h1 class="wptb-item--title"> <span>Mỗi hình xăm lưu giữ một ký ức đẹp</span></h1>
+                        <h1 class="wptb-item--title"> <span>Mỗi Tác Phẩm Đều Kể Một Câu Chuyện</span></h1>
                   </div>
                </div>
 
@@ -1133,8 +1133,8 @@
             <div class="container-full">
                 <div class="wptb-heading mb-0">
                     <div class="wptb-item--inner text-center">
-                        <h6 class="wptb-item--subtitle"><span>03 //</span>Albums Tác Phẩm</h6>
-                        <h1 class="wptb-item--title lg"><span>Bộ Sưu Tập Tattoo Dành Cho Nữ</span></h1>
+                        <h6 class="wptb-item--subtitle"><span>03 //</span>BỘ SƯU TẬP TÁC PHẨM</h6>
+                        <h1 class="wptb-item--title lg"><span>Nơi những ý tưởng bắt đầu</span></h1>
                     </div>
                 </div>
 
@@ -1447,7 +1447,7 @@
                         <span class="google-reviews__summary-stars" aria-hidden="true">
                             <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                         </span>
-                        <span class="google-reviews__summary-count">· {{ $ReviewCus->count() }} đánh giá</span>
+                        {{-- <span class="google-reviews__summary-count">· {{ $ReviewCus->count() }} đánh giá</span> --}}
                     </div>
                 </div>
 
