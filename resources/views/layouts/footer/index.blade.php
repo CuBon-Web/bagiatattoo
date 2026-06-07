@@ -25,7 +25,7 @@
                      </div>
 
                      <h6 class="widget-title">{{$setting->webname}}</h6>
-                    
+                     <h6> <i class="bi bi-clock"></i>{{$setting->linkpopup}}</h6>
                   </div>
                </div>
 
@@ -56,8 +56,9 @@
             <div class="social-box style-oval">
                <ul>
                   <li><a href="{{$setting->facebook}}" class="bi bi-facebook"></a></li>
-                  <li><a href="{{$setting->instagram}}" class="bi bi-instagram"></a></li>
-                  <li><a href="{{$setting->tiktok}}" class="bi bi-tiktok"></a></li>
+                  <li><a href="{{$setting->fbPixel}}" class="bi bi-instagram"></a></li>
+                  <li><a href="{{$setting->google}}" class="bi bi-tiktok"></a></li>
+                  <li><a href="{{$setting->GA}}" class="bi bi-messenger"></a></li>
                </ul>
             </div>
          </div>

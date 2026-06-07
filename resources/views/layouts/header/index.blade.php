@@ -36,7 +36,15 @@
                            
                         </ul>
                      </li> --}}
-                     @foreach ($blogCate as $item)
+                     <li class="menu-item menu-item-has-children"><a href="#">Blog</a>
+                        <ul class="sub-menu" data-lenis-prevent>
+                           @foreach ($blogCate as $item)
+                           <li class="menu-item"><a href="{{route('listCateBlog', $item->slug)}}">{{languageName($item->name)}}</a></li>
+                           @endforeach
+                           
+                        </ul>
+                     </li> 
+                     {{-- @foreach ($blogCate as $item)
                      <li class="menu-item {{count($item->typeCate) > 0 ? 'menu-item-has-children' : ''}}"><a href="{{route('listCateBlog', $item->slug)}}">{{languageName($item->name)}}</a>
                         @if (count($item->typeCate) > 0)
                         <ul class="sub-menu" data-lenis-prevent>
@@ -46,7 +54,7 @@
                         </ul>
                         @endif
                      </li>
-                     @endforeach
+                     @endforeach --}}
                       <li class="menu-item"><a href="{{route('lienHe')}}">Liên Hệ</a></li>
                    </ul>
                 </div>

@@ -105,7 +105,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label>Code Google analytics</label>
+                  <label>Messenger</label>
                   <vs-input
                     type="text"
                     size="default"
@@ -123,7 +123,7 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label>Link Tải Profile</label>
+                  <label>Giờ làm việc</label>
                   <vs-input
                     type="text"
                     size="default"

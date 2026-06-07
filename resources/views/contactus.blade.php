@@ -101,6 +101,14 @@ Liên hệ với chúng tôi
                                     <h5 class="wptb-item--title"><a href="mailto:{{$setting->email}}">{{$setting->email}}</a></h5>
                                 </div>
                             </div>
+                            <div class="wptb-office">
+                                <div class="wptb-item--inner">
+                                    <div class="wptb-item--subtitle">
+                                        Giờ làm việc
+                                    </div>
+                                    <h5 class="wptb-item--title"><a href="">{{$setting->linkpopup}}</a></h5>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

@@ -940,7 +940,7 @@
                                                                                 </span>
                                                                             </span>
                                                                         </a>
-                                                                        <a class="btn btn-two creative" target="_blank" href="https://www.instagram.com/bagiatattoo/">
+                                                                        <a class="btn btn-two creative" target="_blank" href="{{$setting->GA}}">
                                                                             <span class="btn-wrap">
                                                                                 <span class="text-first">Đặt lịch
                                                                                     ngay</span>

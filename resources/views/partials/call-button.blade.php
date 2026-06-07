@@ -3,7 +3,8 @@
         'phone' => $setting->phone1 ?? '',
         'facebook' => $setting->facebook ?? '',
         'instagram' => $setting->fbPixel ?? '',
-        'tiktok' => 'google',
+        'tiktok' => $setting->google ?? '',
+        'messenger' => $setting->GA ?? '',
         'position' => 'right',
         'theme' => 'brand',
         'above_totop' => true,
@@ -13,6 +14,7 @@
             'facebook' => 'Facebook',
             'instagram' => 'Instagram',
             'tiktok' => 'TikTok',
+            'messenger' => 'Messenger',
         ],
     ], $cbw ?? []);
 
@@ -81,6 +83,18 @@
         >
             <span class="cbw__label">{{ $cbw['labels']['tiktok'] ?? 'TikTok' }}</span>
             <span class="cbw__icon"><i class="bi bi-tiktok" aria-hidden="true"></i></span>
+        </a>
+        <a
+            class="cbw__item cbw__item--messenger"
+            data-cbw-link="messenger"
+            href="{{ $cbw['messenger'] }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="{{ $cbw['labels']['messenger'] ?? 'Messenger' }}"
+            @if(empty($cbw['messenger'])) hidden @endif
+        >
+            <span class="cbw__label">{{ $cbw['labels']['messenger'] ?? 'Messenger' }}</span>
+            <span class="cbw__icon"><i class="bi bi-messenger" aria-hidden="true"></i></span>
         </a>
     </div>
 
