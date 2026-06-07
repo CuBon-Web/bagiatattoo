@@ -19,7 +19,7 @@
     ], $cbw ?? []);
 
     $cbwPhone = preg_replace('/\s+/', '', $cbw['phone'] ?? '');
-    $hasAny = $cbwPhone || ($cbw['facebook'] ?? '') || ($cbw['instagram'] ?? '') || ($cbw['tiktok'] ?? '');
+    $hasAny = $cbwPhone || ($cbw['facebook'] ?? '') || ($cbw['instagram'] ?? '') || ($cbw['tiktok'] ?? '') || ($cbw['messenger'] ?? '');
 @endphp
 
 @if($hasAny)
@@ -31,6 +31,7 @@
     data-cbw-facebook="{{ $cbw['facebook'] ?? '' }}"
     data-cbw-instagram="{{ $cbw['instagram'] ?? '' }}"
     data-cbw-tiktok="{{ $cbw['tiktok'] ?? '' }}"
+    data-cbw-messenger="{{ $cbw['messenger'] ?? '' }}"
     data-cbw-position="{{ $cbw['position'] ?? 'right' }}"
     data-cbw-theme="{{ $cbw['theme'] ?? 'brand' }}"
     data-cbw-above-totop="{{ !empty($cbw['above_totop']) ? 'true' : 'false' }}"
@@ -87,7 +88,7 @@
         <a
             class="cbw__item cbw__item--messenger"
             data-cbw-link="messenger"
-            href="{{ $cbw['messenger'] }}"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="{{ $cbw['labels']['messenger'] ?? 'Messenger' }}"

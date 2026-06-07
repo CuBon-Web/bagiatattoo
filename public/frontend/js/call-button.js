@@ -7,7 +7,7 @@
  *   3. Or init programmatically: CallButtonWidget.init('.cbw', { phone: '...' })
  *
  * Data attributes on root .cbw:
- *   data-cbw-phone, data-cbw-facebook, data-cbw-instagram, data-cbw-tiktok
+ *   data-cbw-phone, data-cbw-facebook, data-cbw-instagram, data-cbw-tiktok, data-cbw-messenger
  *   data-cbw-position="right"|"left"
  *   data-cbw-theme="brand"|"light"
  *   data-cbw-above-totop="true" — lift above .totop button
@@ -38,6 +38,7 @@
             facebook: root.getAttribute('data-cbw-facebook') || '',
             instagram: root.getAttribute('data-cbw-instagram') || '',
             tiktok: root.getAttribute('data-cbw-tiktok') || '',
+            messenger: root.getAttribute('data-cbw-messenger') || '',
             position: root.getAttribute('data-cbw-position') || 'right',
             theme: root.getAttribute('data-cbw-theme') || 'brand',
             aboveTotop: root.getAttribute('data-cbw-above-totop') === 'true',
@@ -49,6 +50,7 @@
         if (config.facebook) root.setAttribute('data-cbw-facebook', config.facebook);
         if (config.instagram) root.setAttribute('data-cbw-instagram', config.instagram);
         if (config.tiktok) root.setAttribute('data-cbw-tiktok', config.tiktok);
+        if (config.messenger) root.setAttribute('data-cbw-messenger', config.messenger);
     }
 
     function bindItem(root, selector, href, visible) {
@@ -79,6 +81,7 @@
         bindItem(root, '[data-cbw-link="facebook"]', normalizeUrl(cfg.facebook), !!cfg.facebook);
         bindItem(root, '[data-cbw-link="instagram"]', normalizeUrl(cfg.instagram), !!cfg.instagram);
         bindItem(root, '[data-cbw-link="tiktok"]', normalizeUrl(cfg.tiktok), !!cfg.tiktok);
+        bindItem(root, '[data-cbw-link="messenger"]', normalizeUrl(cfg.messenger), !!cfg.messenger);
 
         var anyVisible = root.querySelector('.cbw__item.is-visible');
         root.classList.toggle('cbw--has-links', !!anyVisible);
