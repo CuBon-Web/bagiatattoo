@@ -140,7 +140,7 @@
                                 <a href="{{route('detailBlog',['slug'=>$item->slug])}}" class="wptb-item-link"><img src="{{url(''.$item->image)}}" alt="{{languageName($item->title)}}"></a>
                             </div>
                             <div class="wptb-item--holder">
-                                <div class="wptb-item--date">{{date_format($item->created_at,'d/m/Y')}}</div>
+                                {{-- <div class="wptb-item--date">{{date_format($item->created_at,'d/m/Y')}}</div> --}}
                                 <h4 class="wptb-item--title"><a href="{{route('detailBlog',['slug'=>$item->slug])}}">{{languageName($item->title)}}</a></h4>
                                 
                                 <div class="wptb-item--meta">

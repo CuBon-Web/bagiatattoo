@@ -73,7 +73,7 @@
             <span class="cbw__label">{{ $cbw['labels']['instagram'] ?? 'Instagram' }}</span>
             <span class="cbw__icon"><i class="bi bi-instagram" aria-hidden="true"></i></span>
         </a>
-        <a
+        {{-- <a
             class="cbw__item cbw__item--tiktok"
             data-cbw-link="tiktok"
             href="#"
@@ -84,7 +84,7 @@
         >
             <span class="cbw__label">{{ $cbw['labels']['tiktok'] ?? 'TikTok' }}</span>
             <span class="cbw__icon"><i class="bi bi-tiktok" aria-hidden="true"></i></span>
-        </a>
+        </a> --}}
         <a
             class="cbw__item cbw__item--messenger"
             data-cbw-link="messenger"

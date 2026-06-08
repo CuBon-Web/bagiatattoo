@@ -1,3 +1,49 @@
+<section class="pdb-0 pdt-0">
+   <div class="container">
+      <div class="wptb-office-address">
+         <div class="row">
+             <div class="col-lg-4 col-md-6">
+                 <div class="wptb-icon-box1 wow fadeInLeft">
+                     <div class="wptb-item--inner flex-start">
+                         <div class="wptb-item--icon"><i class="bi bi-facebook"></i></div>
+                         <div class="wptb-item--holder">
+                             <h3 class="wptb-item--title">Facebook</h3>
+                             <p class="wptb-item--description">{{$setting->facebook}}</p>
+                             <a href="{{$setting->facebook}}" class="wptb-item--link">Xem trang</a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+             <div class="col-lg-4 col-md-6 px-md-5">
+                 <div class="wptb-icon-box1 wow fadeInLeft">
+                     <div class="wptb-item--inner flex-start">
+                         <div class="wptb-item--icon"><i class="bi bi-phone"></i></div>
+                         <div class="wptb-item--holder">
+                             <h3 class="wptb-item--title">Số điện thoại</h3>
+                             <p class="wptb-item--description">{{$setting->phone1}}</p>
+                             <a href="tel:{{$setting->phone1}}" class="wptb-item--link">Gọi Ngay</a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+             <div class="col-lg-4 col-md-6">
+                 <div class="wptb-icon-box1 wow fadeInLeft">
+                     <div class="wptb-item--inner flex-start">
+                         <div class="wptb-item--icon"><i class="bi bi-map"></i></div>
+                         <div class="wptb-item--holder">
+                             <h3 class="wptb-item--title">Địa chỉ</h3>
+                             <p class="wptb-item--description">{{$setting->address1}}</p>
+                             <a href="https://g.page/bagiatattoo" class="wptb-item--link">Chỉ đường</a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+   </div>
+  </section>
 <footer class="footer style1 bg-image-2" style="background-image: url('../assets/img/background/bg-5.png');">
    <div class="footer-top">
       <div class="container">
@@ -33,10 +79,9 @@
                   <div class="footer-widget text-md-end">
                      <div class="footer-nav">
                         <ul>
-                           @foreach ($servicehome as $item)
-                           <li class="menu-item"><a href="{{route('serviceList',['slug'=>$item->slug])}}">{{languageName($item->name)}}</a></li>
-                           @endforeach
-                        </ul>
+                           <li class="menu-item"><a href="">Vị trí</a></li>
+                        </ul> <br>
+                        {!! $setting->iframe_map !!}
                      </div>
                   </div>
                </div>

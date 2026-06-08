@@ -23,8 +23,8 @@
 }
 .footer .footer--inner{
     position: relative;
-    padding-top: 155px;
-    padding-bottom: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     overflow: hidden;
 }
 .footer .footer-widget:has(.footer-nav) {

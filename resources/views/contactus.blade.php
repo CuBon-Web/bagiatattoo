@@ -34,7 +34,7 @@ Liên hệ với chúng tôi
 								<div class="wptb-item--holder">
 									<h3 class="wptb-item--title">Email</h3>
 									<p class="wptb-item--description">{{$setting->email}}</p>
-									<a href="mailto:{{$setting->email}}" class="wptb-item--link">Send Now</a>
+									<a href="mailto:{{$setting->email}}" class="wptb-item--link">Gửi Email</a>
 								</div>
 							</div>
 						</div>
@@ -47,7 +47,7 @@ Liên hệ với chúng tôi
 								<div class="wptb-item--holder">
 									<h3 class="wptb-item--title">Hotline</h3>
 									<p class="wptb-item--description">{{$setting->phone1}}</p>
-									<a href="tel:{{$setting->phone1}}" class="wptb-item--link">Gọi Ngay</a>
+									<a href="tel:{{$setting->phone1}}" class="wptb-item--link">Gọi Ngay</a>
 								</div>
 							</div>
 						</div> 
@@ -60,7 +60,7 @@ Liên hệ với chúng tôi
 								<div class="wptb-item--holder">
 									<h3 class="wptb-item--title">Địa chỉ</h3>
 									<p class="wptb-item--description">{{$setting->address1}}</p>
-									<a href="https://g.page/bagiatattoo" class="wptb-item--link">View Map</a>
+									<a href="https://g.page/bagiatattoo" class="wptb-item--link">Chỉ đường</a>
 								</div>
 							</div>
 						</div> 

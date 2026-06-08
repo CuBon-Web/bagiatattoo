@@ -84,10 +84,10 @@
     <button type="button" class="mr_menu_close"><i class="bi bi-x-lg"></i></button>
     <div class="logo"></div> <!-- Keep this div empty. Logo will come here by JavaScript -->
 
-    <h6>Menu</h6>
+    <h6>Danh mục</h6>
     <div class="mr_navmenu"></div> <!-- Keep this div empty. Menu will come here by JavaScript -->
 
-    <h6>Contact Us</h6>
+    <h6>Thông tin liên hệ</h6>
     <div class="wptb-icon-box1 style2">
        <div class="wptb-item--inner flex-start">
           <div class="wptb-item--icon"><i class="bi bi-envelope"></i></div>
@@ -115,13 +115,13 @@
        </div>
     </div>
 
-    <h6>Find Our Page</h6>
+    <h6>Mạng xã hội</h6>
     <div class="social-box">
        <ul>
-          <li><a href="{{$setting->facebook}}"><i class="bi bi-facebook"></i></a></li>
-          <li><a href="{{$setting->instagram}}"><i class="bi bi-instagram"></i></a></li>
-          <li><a href="{{$setting->linkedin}}"><i class="bi bi-linkedin"></i></a></li>
-          <li><a href="{{$setting->youtube}}"><i class="bi bi-youtube"></i></a></li>
+          <li><a href="{{$setting->facebook}}" target="_blank"><i class="bi bi-facebook"></i></a></li>
+          <li><a href="{{$setting->fbPixel}}" target="_blank"><i class="bi bi-instagram"></i></a></li>
+          <li><a href="{{$setting->google}}" target="_blank"><i class="bi bi-tiktok"></i></a></li>
+          <li><a href="{{$setting->GA}}" target="_blank"><i class="bi bi-messenger"></i></a></li>
        </ul>
     </div>
  </div>

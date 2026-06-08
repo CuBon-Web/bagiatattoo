@@ -1064,7 +1064,7 @@
                                         <div class="wptb-item--holder align-items-center">
                                             <div class="wptb-item--value flex-shrink-0"><span class="odometer"
                                                     data-count="100"></span><span class="suffix">%</span></div>
-                                            <div class="wptb-item--text">Dụng cụ vô trùng</div>
+                                            <div class="wptb-item--text">DỤNG CỤ SỬ DỤNG MỘT LẦN</div>
                                         </div>
                                     </div>
                                 </div>
@@ -1101,8 +1101,9 @@
             <div class="container">
                <div class="wptb-heading">
                   <div class="wptb-item--inner text-center">
-                        <h6 class="wptb-item--subtitle"><span>02//</span> Tác Phẩm Nổi Bật</h6>
-                        <h1 class="wptb-item--title"> <span>Mỗi Tác Phẩm Đều Kể Một Câu Chuyện</span></h1>
+                        
+                        <h1 class="wptb-item--title"> <span style="color: var(--color-one);">02//</span> Tác Phẩm Nổi Bật</h1>
+                        <h6 class="wptb-item--subtitle">Mỗi Tác Phẩm Đều Kể Một Câu Chuyện</h6>
                   </div>
                </div>
 
@@ -1133,8 +1134,11 @@
             <div class="container-full">
                 <div class="wptb-heading mb-0">
                     <div class="wptb-item--inner text-center">
-                        <h6 class="wptb-item--subtitle"><span>03 //</span>BỘ SƯU TẬP TÁC PHẨM</h6>
-                        <h1 class="wptb-item--title lg"><span>Nơi những ý tưởng bắt đầu</span></h1>
+                        <h1 class="wptb-item--title"> <span style="color: var(--color-one);">03//</span> BỘ SƯU TẬP TÁC PHẨM</h1>
+                        <h6 class="wptb-item--subtitle">Nơi những ý tưởng bắt đầu</h6>
+
+                        {{-- <h6 class="wptb-item--subtitle"><span>03 //</span>BỘ SƯU TẬP TÁC PHẨM</h6>
+                        <h1 class="wptb-item--title lg"><span>Nơi những ý tưởng bắt đầu</span></h1> --}}
                     </div>
                 </div>
 
@@ -1193,7 +1197,7 @@
                             <div class="wptb-item--inner text-center">
                                 <span class="booking-form__eyebrow">Liên hệ</span>
                                 <h2 class="wptb-item--title">Đặt lịch ngay</h2>
-                                <p class="wptb-item--description">Để lại thông tin, chúng tôi sẽ gọi lại và tư vấn cho bạn một cách tận tâm nhất.</p>
+                                <p class="wptb-item--description">Để lại thông tin và ý tưởng của bạn, Bagia Tattoo sẽ liên hệ trong thời gian sớm nhất.</p>
                                 <div class="booking-form__divider"></div>
                             </div>
                         </div>
@@ -1588,7 +1592,7 @@
                                          </a>
                                      </div>
                                      <div class="wptb-item--holder">
-                                         <div class="wptb-item--date">{{ date_format($itemBlog->created_at, 'd/m/Y') }}</div>
+                                         {{-- <div class="wptb-item--date">{{ date_format($itemBlog->created_at, 'd/m/Y') }}</div> --}}
                                          <h4 class="wptb-item--title">
                                              <a href="{{ route('detailBlog', ['slug' => $itemBlog->slug]) }}">{{ languageName($itemBlog->title) }}</a>
                                          </h4>
@@ -1612,51 +1616,6 @@
          </div>
      </section>
         @endforeach
-        <section class="pdb-0 pdt-0">
-         <div class="container">
-            <div class="wptb-office-address">
-               <div class="row">
-                   <div class="col-lg-4 col-md-6">
-                       <div class="wptb-icon-box1 wow fadeInLeft">
-                           <div class="wptb-item--inner flex-start">
-                               <div class="wptb-item--icon"><i class="bi bi-facebook"></i></div>
-                               <div class="wptb-item--holder">
-                                   <h3 class="wptb-item--title">Facebook</h3>
-                                   <p class="wptb-item--description">{{$setting->facebook}}</p>
-                                   <a href="{{$setting->facebook}}" class="wptb-item--link">Visit Now</a>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-      
-                   <div class="col-lg-4 col-md-6 px-md-5">
-                       <div class="wptb-icon-box1 wow fadeInLeft">
-                           <div class="wptb-item--inner flex-start">
-                               <div class="wptb-item--icon"><i class="bi bi-phone"></i></div>
-                               <div class="wptb-item--holder">
-                                   <h3 class="wptb-item--title">Số điện thoại</h3>
-                                   <p class="wptb-item--description">{{$setting->phone1}}</p>
-                                   <a href="tel:{{$setting->phone1}}" class="wptb-item--link">Call Now</a>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-      
-                   <div class="col-lg-4 col-md-6">
-                       <div class="wptb-icon-box1 wow fadeInLeft">
-                           <div class="wptb-item--inner flex-start">
-                               <div class="wptb-item--icon"><i class="bi bi-map"></i></div>
-                               <div class="wptb-item--holder">
-                                   <h3 class="wptb-item--title">Địa chỉ</h3>
-                                   <p class="wptb-item--description">{{$setting->address1}}</p>
-                                   <a href="{{$setting->iframe_map}}" class="wptb-item--link">View Map</a>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-         </div>
-        </section>
+        
     </main>
 @endsection
