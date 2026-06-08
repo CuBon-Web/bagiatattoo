@@ -1155,7 +1155,7 @@
 }
 
 .wptb-slider.style3 .wptb-heading .wptb-item--title {
-    font-size: 70px;
+    font-size: 60px;
     line-height: 76px;
     color: var(--color-white-fixed);
     font-family: var(--font-family-two);
@@ -2475,7 +2475,7 @@
     }
 
     .wptb-slider.style2 .wptb-heading .wptb-item--title, .wptb-slider.style3 .wptb-heading .wptb-item--title, .wptb-slider.style4 .wptb-heading-two .wptb-item--title, .wptb-slider.style5 .wptb-heading .wptb-item--title, .wptb-slider.style7 .wptb-heading .wptb-item--title, .wptb-slider.style8 .wptb-heading .wptb-item--title {
-        font-size: 40px;
+        font-size: 35px;
     }
 
     .wptb-slider.style1 .wptb-heading .wptb-item--title span {

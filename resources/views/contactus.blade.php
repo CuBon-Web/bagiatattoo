@@ -27,7 +27,7 @@ Liên hệ với chúng tôi
 		<div class="container">
 			<div class="wptb-office-address mr-top-100">
 				<div class="row">
-					<div class="col-lg-4 col-md-6">
+					<div class="col-lg-6 col-md-6">
 						<div class="wptb-icon-box1 wow fadeInLeft">
 							<div class="wptb-item--inner flex-start">
 								<div class="wptb-item--icon"><i class="bi bi-globe"></i></div>
@@ -40,7 +40,7 @@ Liên hệ với chúng tôi
 						</div>
 					</div>
 
-					<div class="col-lg-4 col-md-6 px-md-5">                            
+					<div class="col-lg-6 col-md-6">                            
 						<div class="wptb-icon-box1 wow fadeInLeft">
 							<div class="wptb-item--inner flex-start">
 								<div class="wptb-item--icon"><i class="bi bi-phone"></i></div>
@@ -53,7 +53,7 @@ Liên hệ với chúng tôi
 						</div> 
 					</div>
 
-					<div class="col-lg-4 col-md-6">
+					<div class="col-lg-6 col-md-6">
 						<div class="wptb-icon-box1 wow fadeInLeft">
 							<div class="wptb-item--inner flex-start">
 								<div class="wptb-item--icon"><i class="bi bi-geo-alt"></i></div>
@@ -61,6 +61,17 @@ Liên hệ với chúng tôi
 									<h3 class="wptb-item--title">Địa chỉ</h3>
 									<p class="wptb-item--description">{{$setting->address1}}</p>
 									<a href="https://g.page/bagiatattoo" class="wptb-item--link">Chỉ đường</a>
+								</div>
+							</div>
+						</div> 
+					</div>
+                    <div class="col-lg-6 col-md-6">
+						<div class="wptb-icon-box1 wow fadeInLeft">
+							<div class="wptb-item--inner flex-start">
+								<div class="wptb-item--icon"><i class="bi bi-clock"></i></div>
+								<div class="wptb-item--holder">
+									<h3 class="wptb-item--title">Giờ làm việc</h3>
+									<p class="wptb-item--description">{{$setting->linkpopup}}</p>
 								</div>
 							</div>
 						</div> 
@@ -76,43 +87,8 @@ Liên hệ với chúng tôi
         <div class="container">
             <div class="wptb-form--wrapper no-bg">
                 <div class="row">
-                    <div class="col-lg-5">
-                        <div class="wptb-heading">
-                            <div class="wptb-item--inner">
-                                <h6 class="wptb-item--subtitle"> <span>01 //</span> Liên Hệ</h6>
-                                {{-- <h1 class="wptb-item--title"> <span>Liên hệ với chúng tôi</span></h1> --}}
-                            </div>
-                        </div>
-                        <div class="widget">
-                            <div class="wptb-office">
-                                <div class="wptb-item--inner">
-                                    <div class="wptb-item--subtitle">
-                                        Gọi cho chúng tôi
-                                    </div>
-                                    <h5 class="wptb-item--title"><a href="tel:{{$setting->phone1}}">{{$setting->phone1}}</a></h5>
-                                </div>
-                            </div>
-    
-                            <div class="wptb-office">
-                                <div class="wptb-item--inner">
-                                    <div class="wptb-item--subtitle">
-                                        Gửi email cho chúng tôi
-                                    </div>
-                                    <h5 class="wptb-item--title"><a href="mailto:{{$setting->email}}">{{$setting->email}}</a></h5>
-                                </div>
-                            </div>
-                            <div class="wptb-office">
-                                <div class="wptb-item--inner">
-                                    <div class="wptb-item--subtitle">
-                                        Giờ làm việc
-                                    </div>
-                                    <h5 class="wptb-item--title"><a href="">{{$setting->linkpopup}}</a></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-7">
+                    <div class="col-lg-12">
                         <form class="wptb-form" action="{{route('postcontact')}}" method="post">
                             @csrf
                             <div class="wptb-form--inner">        

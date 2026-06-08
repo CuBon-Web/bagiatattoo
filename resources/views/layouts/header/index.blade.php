@@ -36,7 +36,7 @@
                            
                         </ul>
                      </li> --}}
-                     <li class="menu-item menu-item-has-children"><a href="#">Blog</a>
+                     <li class="menu-item menu-item-has-children"><a href="#">Cẩm Nang Xăm</a>
                         <ul class="sub-menu" data-lenis-prevent>
                            @foreach ($blogCate as $item)
                            <li class="menu-item"><a href="{{route('listCateBlog', $item->slug)}}">{{languageName($item->name)}}</a></li>

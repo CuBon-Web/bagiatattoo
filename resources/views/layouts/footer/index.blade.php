@@ -95,15 +95,15 @@
       <div class="container">
          <div class="footer-bottom-inner">
             <div class="copyright">
-               <p>Copyright © {{date('Y')}} <a href="{{route('home')}}">Bagia Tattoo</a>, Designed by Tuấn Anh Developer
-               </p>
+               <p>Copyright © {{date('Y')}} <a href="{{route('home')}}">Bagia Tattoo</a></p>
             </div>
             <div class="social-box style-oval">
                <ul>
-                  <li><a href="{{$setting->facebook}}" class="bi bi-facebook"></a></li>
-                  <li><a href="{{$setting->fbPixel}}" class="bi bi-instagram"></a></li>
-                  <li><a href="{{$setting->google}}" class="bi bi-tiktok"></a></li>
-                  <li><a href="{{$setting->GA}}" class="bi bi-messenger"></a></li>
+                  <li><a href="{{$setting->facebook}}" target="_blank" class="bi bi-facebook"></a></li>
+                  <li><a href="{{$setting->fbPixel}}" target="_blank" class="bi bi-instagram"></a></li>
+                  <li><a href="{{$setting->google}}" target="_blank" class="bi bi-tiktok"></a></li>
+                  <li><a href="{{$setting->GA}}" target="_blank" class="bi bi-messenger"></a></li>
+                  <li><a href="https://www.youtube.com/@bagiatattoo" target="_blank" class="bi bi-youtube"></a></li>
                </ul>
             </div>
          </div>
