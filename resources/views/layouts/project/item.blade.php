@@ -8,10 +8,10 @@
         {!! lazy_img($projectThumb, $item->name) !!}
         @endif
     </div>
-    <div class="wptb-item--holder">
+    {{-- <div class="wptb-item--holder">
         <div class="wptb-item--meta">
             <h4 class="text-white">{{ $item->name }}</h4>
             <p>{{ $item->cateProject->name ?? '' }}</p>
         </div>
-    </div>
+    </div> --}}
 </a>

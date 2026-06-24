@@ -152,9 +152,12 @@
             <div class="blog-details-inner">
                 <div class="post-content">
                     <div class="row">
-                        <div class="col-xl-7 col-md-7 pe-xl-5 pe-md-4">
+                        <div class="col-xl-12 col-md-12 pe-xl-5 pe-md-4">
+                            <div class="post-header">
+                                <h1 class="post-title fw-normal">{{$detail->name}}</h1>
+                            </div>
                             <div class="style-masonry project-detail-gallery">
-                                <div class="grid grid-3 gutter-10 clearfix">
+                                <div class="grid grid-4 gutter-10 clearfix">
                                     <div class="grid-sizer"></div>
                                     @foreach (json_decode($detail->images) ?: [] as $item)
                                     @php
@@ -174,39 +177,7 @@
                         </div>
                             
                         <!-- Service Side Info -->
-                        <div class="col-xl-5 col-md-5 pt-4 ps-xl-5 ps-md-4">
-                            <div class="sidebar">
-                                <div class="post-header">
-                                    <h1 class="post-title fw-normal">{{$detail->name}}</h1>
-                                </div>
-                                <div class="fulltext">
-                                    {!!languageName($detail->content)!!}
-                                </div>
-
-                                <div class="divider-line-hr my-1"></div>
-
-                                <div class="wptb-project-info1 border-0 bg-transparent">
-                                    <div class="wptb--holder p-0">
-                                        <div class="row">
-                                            <div class="col-xxl-6">
-                                                <div class="wptb--item border-0">
-                                                    <div class="wptb--meta"><label>Danh mục:</label> <span>{{$detail->cateProject->name}}</span></div>
-                                                </div>
-                                                <div class="wptb--item border-0">
-                                                    <div class="wptb--meta"><label>Tác giả:</label> <span>{{$detail->location}}</span></div>
-                                                </div>
-                                                <div class="wptb--item border-0">
-                                                    <div class="wptb--meta"><label>Thời gian thực hiện:</label> <span>{{$detail->operate}}</span></div>
-                                                </div>
-                                                {{-- <div class="wptb--item border-0">
-                                                    <div class="wptb--meta"><label>Khách hàng:</label> <span>{{$detail->location}}</span></div>
-                                                </div> --}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>                        
                             
