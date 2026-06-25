@@ -1,17 +1,24 @@
 @php
     $projectImages = json_decode($item->images ?? '[]', true) ?: [];
     $projectThumb = $projectImages[0] ?? '';
+    $projectThumbUrl = $projectThumb;
+
+    if ($projectThumbUrl && preg_match('#^/frontend/#', $projectThumbUrl)) {
+        $projectThumbUrl = r2_asset(ltrim($projectThumbUrl, '/'));
+    } elseif ($projectThumbUrl && !preg_match('#^https?://#i', $projectThumbUrl) && strpos($projectThumbUrl, '/') === 0) {
+        $projectThumbUrl = url($projectThumbUrl);
+    } elseif ($projectThumbUrl && !preg_match('#^https?://#i', $projectThumbUrl)) {
+        $projectThumbUrl = url('/' . ltrim($projectThumbUrl, '/'));
+    }
 @endphp
-<a href="{{ route('duanTieuBieuDetail', $item->slug) }}" class="wptb-item--inner project-item-link">
+@if($projectThumb)
+<a href="{{ $projectThumbUrl }}"
+    class="wptb-item--inner project-item-link"
+    data-fancybox="project-thumb"
+    data-caption="{{ $item->name }}"
+    aria-label="Xem ảnh: {{ $item->name }}">
     <div class="wptb-item--image project-thumb-image">
-        @if($projectThumb)
         {!! lazy_img($projectThumb, $item->name) !!}
-        @endif
     </div>
-    {{-- <div class="wptb-item--holder">
-        <div class="wptb-item--meta">
-            <h4 class="text-white">{{ $item->name }}</h4>
-            <p>{{ $item->cateProject->name ?? '' }}</p>
-        </div>
-    </div> --}}
 </a>
+@endif
